@@ -7,20 +7,20 @@ public class Agent : MonoBehaviour
     private Astar Astar = new Astar();
     private List<Vector2Int> path = new List<Vector2Int>();
     private Plane ground = new Plane(Vector3.up, 0f);
-    private MeshRenderer renderer;
+    private MeshRenderer meshRenderer;
     private GameObject targetVisual;
     private MazeGeneration maze;
     private LineRenderer line;
     private void Awake()
     {
         maze = FindObjectOfType<MazeGeneration>();
-        renderer = GetComponentInChildren<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
         targetVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);
         targetVisual.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-        targetVisual.GetComponent<MeshRenderer>().material.color = renderer.material.color;
+        targetVisual.GetComponent<MeshRenderer>().material.color = meshRenderer.material.color;
         line = GetComponent<LineRenderer>();
-        line.material.color = renderer.material.color;
-        line.material.color = renderer.material.color;
+        line.material.color = meshRenderer.material.color;
+        line.material.color = meshRenderer.material.color;
     }
 
     private void Start()
@@ -100,7 +100,7 @@ public class Agent : MonoBehaviour
         {
             for (int i = 0; i < path.Count - 1; i++)
             {
-                Gizmos.color = renderer.material.color;
+                Gizmos.color = meshRenderer.material.color;
                 Gizmos.DrawLine(Vector2IntToVector3(path[i], 0.5f), Vector2IntToVector3(path[i + 1], 0.5f));
             }
 
